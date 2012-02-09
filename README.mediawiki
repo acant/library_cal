@@ -1,0 +1,9 @@
+=LibraryCal=
+A Ruby gem to scrape public library web interfaces and create an iCal stream from your due dates.
+
+==Research==
+* Mechanize
+** http://www.qualifilms.com/blog/computer-science/2009/09/ruby-and-web-scrapingautomation/
+** http://rubygems.org/gems/mechanize
+* icalendar
+** http://icalendar.rubyforge.org/
