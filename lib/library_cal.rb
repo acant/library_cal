@@ -1,13 +1,12 @@
-require "library_cal/version"
-require "bundler"
-Bundler.setup
+require 'library_cal/version'
+require 'require_directory'
+require_directory "#{File.dirname(__FILE__)}/library_cal"
 
 module LibraryCal
 	def self.run(arguments)
 		library_code = arguments.shift
 
 		library_object = begin
-			require "library_cal/#{library_code}"
 			LibraryCal.const_get(library_code.upcase).new(arguments)
 		rescue LoadError
 			puts "Sorry, I don't know what library that is."

@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "mechanize"
   s.add_runtime_dependency "icalendar"
   s.add_runtime_dependency "nokogiri"
+  s.add_runtime_dependency "mlightner-require_directory"
 
   s.add_development_dependency "rspec"
 end
