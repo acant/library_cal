@@ -4,18 +4,26 @@ Bundler.setup
 
 module LibraryCal
 	def self.run(arguments)
-		library_object = case arguments[0]
-		when 'kpl' then
-			require "library_cal/kpl"
-			LibraryCal::KPL.new(arguments.slice(1))
-		when 'wpl' 
-			require "library_cal/wpl"
-			LibraryCal::WPL.new(arguments.slice(1))
-		else
+		library_code = arguments.shift
+
+		library_object = begin
+			require "library_cal/#{library_code}"
+			LibraryCal.const_get(library_code.upcase).new(arguments)
+		rescue LoadError
 			puts "Sorry, I don't know what library that is."
-			exit(1)
+			return(1)
+		#TODO more explicitly catch connect errors
+		#TODO catch argument exceptions from library object
+		rescue Exception => exception
+			puts 'Whoops, something unexpected went wrong.'
+			puts "Library Code: #{library_code}"
+			puts "Arguments:    #{arguments.join(',')}"
+			puts "Error Type:   #{exception.class}"
+			puts "Message:      #{exception.message}"
+			return(1)
 		end
 
-		puts library_object.parse(library_object.retrieve()).to_ical
+		puts library_object.retrieve.to_ical
+		return(0)
 	end
 end

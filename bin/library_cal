@@ -1,4 +1,4 @@
 #!/usr/bin/ruby
 require 'library_cal'
 
-LibraryCal.run(ARGV)
+exit(LibraryCal.run(ARGV))
