@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Andrew Sullivan Cant"]
   s.email       = ["acant@alumni.uwaterloo.ca"]
   s.homepage    = ""
-  s.summary     = %q{Convert checkout listings for public libraries to ical}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Convert checked-out item listings for public libraries to ical}
+  s.description = %q{A plugable gem which uses Mechanize and Nokogiri to create ical feeds from check-out item listings from public libraries. }
 
   s.rubyforge_project = "library_cal"
 
