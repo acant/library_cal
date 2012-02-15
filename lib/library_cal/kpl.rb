@@ -1,14 +1,16 @@
 require 'nokogiri'
 require 'icalendar'
 require 'date'
+require 'mechanize'
 
 class LibraryCal::KPL
 	include Icalendar
 
 	def initialize(arguments)
-		@name   = arguments.shift
-		@number = arguments.shift
-		@pin    = arguments.shift
+		#TODO add exception about needing 3 arguments
+		@name     = arguments.shift
+		@bar_code = arguments.shift
+		@pin      = arguments.shift
 	end
 
 	NAME="Kitchener Public Library"
@@ -17,13 +19,28 @@ class LibraryCal::KPL
 	end
 
 	def retrieve
+		agent = Mechanize.new
+		login_page = agent.get('https://books.kpl.org/iii/cas/login?service=https%3A%2F%2Fbooks.kpl.org%3A443%2Fpatroninfo~S1%2FIIITICKET&scope=1')
+
+		login_form = login_page.forms[0]
+		login_form['name'] = @name
+		login_form['code'] = @bar_code
+		login_form['pin']  = @pin
+
+		main_page = login_form.submit() #login_form.buttons.first)
+
+		items_page = main_page.links.
+			find { |l| l.text =~ /currently checked out/ }.
+			click
+
+		parse(items_page.parser, items_page.uri)
 	end
 
-	def parse(html_data)
+	def parse(doc, url)
+		#ASSERT doc looks like a Nokogiri parser
 
 		#Extract dues dates into a hash...
 		due_dates = {}
-		doc = Nokogiri::HTML(html_data)
 		doc.css('table tr.patFuncEntry').each do |record|
 			anchor = record.css('.patFuncTitle a').first
 			title  = anchor.text.strip

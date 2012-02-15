@@ -1,5 +1,6 @@
 require 'library_cal'
 require 'library_cal/kpl'
+require 'nokogiri'
 
 describe LibraryCal::KPL do
 	describe 'retrieve method' do
@@ -11,7 +12,7 @@ describe LibraryCal::KPL do
 		end
 
 		it 'should correctly parse example KPL HTML file' do
-			result = @sut.parse(File.open("examples/kpl.html", "rb").read)
+			result = @sut.parse(Nokogiri.HTML(open("examples/kpl.html")), '')
 			result.events.count.should == 2
 
 			result.events[0].dtstart.should     == Date.new(2012, 2, 26)
