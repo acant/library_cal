@@ -18,3 +18,4 @@ Currently supports:
 * add about to include multiple libraries in one ical feed
 * review and expand exception handling
 * add a spec for LibraryCal.run
+* add documentation and sample configuration about how to run the gem
