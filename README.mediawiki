@@ -1,9 +1,13 @@
 =LibraryCal=
-A Ruby gem to scrape public library web interfaces and create an iCal stream from your due dates.
+A Ruby gem to scrape public library web interfaces and create a simple iCal stream of your due dates.
+The intended usage is to run the gem periodically, with cron for exampke, and save the resulting iCal stream to a location where you calendar can read it.
 
-Currently supports:
-* Kitchener Public Library (KPL)
-** 3 arguments: name, bar code, pin
+The command-line arguments are:
+library_cal LIBRARY_NAME [ARGUMENTS]
+
+Currently supports the following libraries:
+* [http://kpl.org Kitchener Public Library] (KPL)
+** library_cal kpl NAME BARCODE PIN
 
 ==Research==
 * Mechanize
@@ -13,9 +17,12 @@ Currently supports:
 ** http://icalendar.rubyforge.org/
 
 ==Backlog==
-* add handler for Waterloo Public Library
-* add handler for Toronto Public Library
-* add about to include multiple libraries in one ical feed
-* review and expand exception handling
+* add handler for [http://wpl.ca Waterloo Public Library]
+* add handler for [http://tpl.ca Toronto Public Library]
+* add option to include the libraries and arguments into a YAML file
+* add option for specifying a file in an argument, instead of STDOUT
+* allow multiple libraries in one ical feed
+* review and improve exception handling
 * add a spec for LibraryCal.run
 * add documentation and sample configuration about how to run the gem
+* add a Cucumber test for the CLI (try using [https://github.com/cucumber/aruba Aruba])
