@@ -3,7 +3,7 @@ A Ruby gem to scrape public library web interfaces and create a simple iCal stre
 The intended usage is to run the gem periodically, with cron for exampke, and save the resulting iCal stream to a location where you calendar can read it.
 
 The command-line arguments are:
-library_cal LIBRARY_NAME [ARGUMENTS]
+ library_cal LIBRARY_NAME [ARGUMENTS]
 
 Currently supports the following libraries:
 * [http://kpl.org Kitchener Public Library] (KPL)
