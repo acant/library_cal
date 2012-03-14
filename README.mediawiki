@@ -17,6 +17,7 @@ Currently supports the following libraries:
 ** http://icalendar.rubyforge.org/
 
 ==Backlog==
+* add logout to the KPL handler
 * add handler for [http://wpl.ca Waterloo Public Library]
 * add handler for [http://tpl.ca Toronto Public Library]
 * add option to include the libraries and arguments into a YAML file
